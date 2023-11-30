@@ -2032,6 +2032,42 @@ $option_title_width: 180px;
         max-width: 160px;
         margin-top: 12px;
     }
+
+    .alert-notification {
+        display: inline-block;
+        vertical-align: top;
+        height: auto !important;
+        width: auto !important;
+        white-space: break-spaces !important;
+    
+        overflow-wrap: anywhere;
+        background-color: transparent;
+        border-radius: 4px;
+        margin-top: 14px;
+        margin-left: 10px;
+        color: hsl(156deg 30% 50%);
+        padding: 3px 10px;
+    
+        &.account-alert-notification {
+            margin: 0 0 10px;
+            vertical-align: middle;
+        }
+    
+        &:not(:empty) {
+            border: 1px solid hsl(156deg 30% 50%);
+        }
+    
+        &.alert-error {
+            color: hsl(2deg 46% 68%);
+            border-color: hsl(2deg 46% 68%);
+        }
+    
+        .loading_indicator_spinner {
+            width: 13px;
+            height: 20px;
+            margin: 0;
+        }
+    }
 }
 
 #add-new-custom-profile-field-form,

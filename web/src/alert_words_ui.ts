@@ -66,20 +66,45 @@ function add_alert_word(): void {
 
 function remove_alert_word(alert_word: string): void {
     const words_to_be_removed = [alert_word];
+   // const $spinner = $container.find(".emoji-display-settings-status").expectOne();
+    const $alert_box = $("#alert-word-settings .settings_panel_list_header .alert-notification");
+
+  
+    //const test: string = alert_word as string;
+    //console.log("test: ", test);
+
+
     void channel.del({
         url: "/json/users/me/alert_words",
         data: {alert_words: JSON.stringify(words_to_be_removed)},
         success() {
-            update_alert_word_status(
-                $t(
-                    {defaultMessage: `Alert word "{alert_word}" removed successfully!`},
-                    {alert_word},
-                ),
-                false,
+            // update_alert_word_status(
+            //     $t(
+            //         {defaultMessage: `Alert word "{alert_word}" removed successfully!`},
+            //         {alert_word},
+            //     ),
+            //     false,
+            // );
+
+            //alertbox
+            console.log("deleted word", $alert_box)
+            //loading.destroy_indicator($spinner);
+          
+            ui_report.success(
+                $t_html({defaultMessage: `Alert word was removed successfully!`}),
+                $alert_box,
+                1200,
             );
+            
         },
-        error() {
+        error(xhr) {
             update_alert_word_status($t({defaultMessage: "Error removing alert word!"}), true);
+            ui_report.client_error(
+                $t_html({defaultMessage: "CANT DELETE!"}),
+                $alert_box,
+                1200,
+            );
+            //error alert box
         },
     });
 }
